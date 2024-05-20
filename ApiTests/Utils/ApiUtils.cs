@@ -9,7 +9,7 @@ namespace TestProject.Utils
         public static RestResponse SendGetRequest(string resource)
         {
             //implement a simple get request
-            return null;
+            return client.Execute(new RestRequest(resource));
         }
 
         public static RestResponse SendPostRequest(string resource, Object body)
@@ -17,6 +17,14 @@ namespace TestProject.Utils
 
             return client.Execute(new RestRequest(resource, Method.Post)
             { RequestFormat = DataFormat.Json }
+                .AddBody(body));
+        }
+
+        public static RestResponse SendPutRequest(string resource, Object body)
+        {
+
+            return client.Execute(new RestRequest(resource, Method.Put)
+                    { RequestFormat = DataFormat.Json }
                 .AddBody(body));
         }
     }

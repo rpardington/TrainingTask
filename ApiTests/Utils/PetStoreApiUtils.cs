@@ -19,7 +19,12 @@ namespace TestProject.Utils
         {
             return ApiUtils.SendPostRequest(PostEndpoint, pet);
         }
-        
+
+        public static RestResponse PutPet(Pet pet)
+        {
+            return ApiUtils.SendPutRequest(PostEndpoint, pet);
+        }
+
         public static bool PostPetIsSuccessful(Pet pet)
         {
             //implement a logic of sending a post request with a verification of success
