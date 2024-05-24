@@ -1,39 +1,29 @@
 ﻿using ApiTests.Tests.UI;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
 using TestProject.Tests.Pages;
-using TestProject.Utils;
 
 namespace TestProject.Tests.UI
 {
     internal class DynamicControlsTests : BaseTest
     {
-        private static readonly By enableBtn = By.XPath(string.Format(XpathPatterns.preciseTextXpath, "Enable"));
-        private static readonly By input = By.XPath("//input[@type='text']");
-        private static readonly string randomValue = Guid.NewGuid().ToString();
+        private static readonly string RandomValue = Guid.NewGuid().ToString();
 
         [Test]
         public void DynamicControlsTest()
         {
-            MainPage mainPage = new MainPage();
+            var mainPage = new MainPage();
             mainPage.ClickOnDynamicControl();
-            var driver = Browser.GetDriver();
-            driver.FindElement(enableBtn).Click();
 
-            var inputElement = Browser.GetDriver().FindElement(input);
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
-            wait.Until(d => inputElement.Enabled);
+            var dynamicControlsPage = new DynamicControlsPage();
+            dynamicControlsPage.ClickOnEnableButton();
 
             //assert input is enabled
-            Assert.That(inputElement.Enabled, Is.True, "Input element is not enabled");
+            Assert.That(dynamicControlsPage.IsInputEnabled(), Is.True, "Input element is not enabled");
 
             //input randomly generated text
-            inputElement.SendKeys(randomValue);
+            dynamicControlsPage.SetInputValue(RandomValue);
 
             //assert input text
-            Assert.That(inputElement.GetAttribute("value"),
-                Is.EqualTo(randomValue));
+            Assert.That(dynamicControlsPage.GetInputValue(), Is.EqualTo(RandomValue), "Input element value is not correct");
         }
     }
-    
 }
