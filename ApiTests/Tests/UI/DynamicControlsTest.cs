@@ -9,7 +9,7 @@ namespace TestProject.Tests.UI
     internal class DynamicControlsTests : BaseTest
     {
         private static readonly By enableBtn = By.XPath(string.Format(XpathPatterns.preciseTextXpath, "Enable"));
-        private static readonly By input = By.XPath(XpathPatterns.preciseInputXpath);
+        private static readonly By input = By.XPath("//input[@type='text']");
         private static readonly string randomValue = Guid.NewGuid().ToString();
 
         [Test]
@@ -25,7 +25,7 @@ namespace TestProject.Tests.UI
             wait.Until(d => inputElement.Enabled);
 
             //assert input is enabled
-            Assert.That(inputElement.Enabled, Is.True);
+            Assert.That(inputElement.Enabled, Is.True, "Input element is not enabled");
 
             //input randomly generated text
             inputElement.SendKeys(randomValue);
