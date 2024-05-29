@@ -8,7 +8,7 @@ using TestProject.Utils;
 
 namespace TestProject.Tests.Pages
 {
-    internal class MainPage
+    public class MainPage
     {
         private static readonly By dynamicControl = By.XPath(string.Format(XpathPatterns.preciseTextXpath, "Dynamic Controls"));
 

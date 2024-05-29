@@ -3,7 +3,7 @@ using TestProject.Utils;
 
 namespace TestProject.Tests.Pages
 {
-    internal class DynamicControlsPage
+    public class DynamicControlsPage
     {
         private static readonly By enableBtn = By.XPath(string.Format(XpathPatterns.preciseTextXpath, "Enable"));
         private static readonly By input = By.XPath("//input[@type='text']");

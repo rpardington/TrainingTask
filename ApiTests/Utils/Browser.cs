@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace TestProject.Utils
 {
-    internal class Browser
+    public class Browser
     {
         private static WebDriver driver = null;
         private static WebDriverWait wait = null;
