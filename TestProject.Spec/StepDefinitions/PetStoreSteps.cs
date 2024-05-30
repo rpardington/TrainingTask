@@ -6,7 +6,7 @@ using TestProject.Utils;
 namespace TestProject.Spec.StepDefinitions
 {
     [Binding]
-    public class PetTestStepDefinitions
+    public class PetStoreSteps
     {
         [Given("I have a created the following pet:")]
         public void GivenIHaveACreatedTheFollowingPet(Table table)
