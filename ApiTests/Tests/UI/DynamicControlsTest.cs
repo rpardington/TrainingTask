@@ -1,24 +1,29 @@
 ﻿using ApiTests.Tests.UI;
-using OpenQA.Selenium;
 using TestProject.Tests.Pages;
-using TestProject.Utils;
 
 namespace TestProject.Tests.UI
 {
     internal class DynamicControlsTests : BaseTest
     {
-        private static readonly By enableBtn = By.XPath(string.Format(XpathPatterns.preciseTextXpath, "Enable"));
+        private static readonly string RandomValue = Guid.NewGuid().ToString();
 
         [Test]
         public void DynamicControlsTest()
         {
-            MainPage mainPage = new MainPage();
+            var mainPage = new MainPage();
             mainPage.ClickOnDynamicControl();
-            Browser.GetDriver().FindElement(enableBtn).Click();
+
+            var dynamicControlsPage = new DynamicControlsPage();
+            dynamicControlsPage.ClickOnEnableButton();
+
             //assert input is enabled
+            Assert.That(dynamicControlsPage.IsInputEnabled(), Is.True, "Input element is not enabled");
+
             //input randomly generated text
+            dynamicControlsPage.SetInputValue(RandomValue);
+
             //assert input text
+            Assert.That(dynamicControlsPage.GetInputValue(), Is.EqualTo(RandomValue), "Input element value is not correct");
         }
     }
-    
 }
